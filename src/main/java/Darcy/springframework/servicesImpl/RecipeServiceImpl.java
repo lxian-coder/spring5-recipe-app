@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class recipeServiceImpl implements RecipesService {
+public class RecipeServiceImpl implements RecipesService {
 
     private RecipeRepository  recipeRepository;
    // private Set<Recipe> recipes = new HashSet<>();
 
-    public recipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 

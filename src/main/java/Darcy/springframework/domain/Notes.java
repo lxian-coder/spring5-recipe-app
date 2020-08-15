@@ -9,6 +9,7 @@ import javax.persistence.*;
  * Author: Darcy Xian  2020/8/512:55
  */
 @Data
+@EqualsAndHashCode(exclude = "recipe")
 @Entity
 public class Notes {
 
@@ -21,5 +22,12 @@ public class Notes {
 
     @Lob
     private String recipeNotes;
+
+    public Notes() {
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof Notes;
+    }
 
 }

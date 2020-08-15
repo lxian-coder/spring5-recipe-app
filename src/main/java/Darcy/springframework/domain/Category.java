@@ -1,8 +1,9 @@
 package Darcy.springframework.domain;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,8 @@ import java.util.Set;
  * Author: Darcy Xian  2020/8/610:49
  */
 //@Data
+@Data
+@EqualsAndHashCode(exclude = "recipe")
 @Entity
 public class Category {
 
@@ -20,21 +23,6 @@ public class Category {
     private String description;
 
   @ManyToMany(mappedBy = "categories")
-   private Set<Recipe> recipe;
+   private Set<Recipe> recipe = new HashSet<>();
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Recipe> getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Set<Recipe> recipe) {
-        this.recipe = recipe;
-    }
 }

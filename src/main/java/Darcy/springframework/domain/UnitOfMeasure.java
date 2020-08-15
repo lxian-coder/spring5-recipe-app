@@ -1,5 +1,7 @@
 package Darcy.springframework.domain;
 
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +11,7 @@ import javax.persistence.Id;
  * spring5-recipe-app
  * Author: Darcy Xian  2020/8/516:49
  */
+@Data
 @Entity
 public class UnitOfMeasure {
 
@@ -18,12 +21,5 @@ public class UnitOfMeasure {
 
     private String description;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
 

@@ -1,5 +1,10 @@
 package Darcy.springframework.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -8,6 +13,8 @@ import java.math.BigDecimal;
  * Author: Darcy Xian  2020/8/515:15
  */
 
+@Data
+@EqualsAndHashCode(exclude = "recipe")
 @Entity
 //@Table(name = "Ingerdients")
 public class Ingredient {
@@ -35,35 +42,4 @@ public class Ingredient {
         this.uom = uom;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getAmuont() {
-        return amuont;
-    }
-
-    public void setAmuont(BigDecimal amuont) {
-        this.amuont = amuont;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public UnitOfMeasure getUom() {
-        return uom;
-    }
-
-    public void setUom(UnitOfMeasure uom) {
-        this.uom = uom;
-    }
 }
