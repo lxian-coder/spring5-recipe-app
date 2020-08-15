@@ -3,15 +3,12 @@ package Darcy.springframework.controllers;
 
 import Darcy.springframework.domain.Recipe;
 import Darcy.springframework.services.RecipesService;
-
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
@@ -21,13 +18,12 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static  org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 /**
  * Darcy Xian  13/8/20  6:33 pm      spring5-recipe-app
  */
-
 public class IndexControllerTest {
 
     IndexController indexController;
@@ -41,7 +37,6 @@ public class IndexControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         indexController = new IndexController(recipesService);
-
     }
 
     @Test
@@ -78,6 +73,5 @@ public class IndexControllerTest {
         verify(model,times(1)).addAttribute(eq("recipes"),argumentCaptor.capture());
         Set<Recipe> setIncontroller = argumentCaptor.getValue();
        assertEquals(2,setIncontroller.size());  // assertEquals  值是不是相等； verify 运行了几次
-
     }
 }
