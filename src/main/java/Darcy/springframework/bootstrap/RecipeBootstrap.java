@@ -51,6 +51,8 @@ public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEve
         // if(!checkDash.isPresent()){
         //     throw new RuntimeException("Expected UOM Dash not found");
         // }
+        guacRecipe.setSource("Dr.Berg");
+        guacRecipe.setUrl("http://www.simplyrecipes.com/recipes/perfect_guacamole/");
 
         Optional<UnitOfMeasure> checkEach = unitOfMeasureRepository.findByDescription("Each");
         if(!checkEach.isPresent()){

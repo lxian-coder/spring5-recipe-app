@@ -6,6 +6,9 @@ import Darcy.springframework.domain.Recipe;
 
 public interface RecipesService {
     Iterable<Recipe> getRecipe();
+    Recipe getRecipeById(Long id);
+
+
 }
 
 

@@ -18,7 +18,7 @@ public class IndexController {
         this.recipesService = recipesService;
     }
 
-    @RequestMapping({"/recipe","/recipes","/recipes/","/recipe/","","/"})
+    @RequestMapping({"/recipe","/recipes","/recipes/","/recipe","","/"})
     public String getRecipeList(Model model){
         log.debug("I am in controller");
 

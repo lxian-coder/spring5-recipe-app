@@ -2,24 +2,28 @@ package Darcy.springframework.servicesImpl;
 
 import Darcy.springframework.domain.Recipe;
 import Darcy.springframework.repositories.RecipeRepository;
-import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
+import java.util.Optional;
 
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
 
 /**
  * Darcy Xian  13/8/20  3:51 pm      spring5-recipe-app
  */
-public class recipeServiceImplTest extends TestCase {
+public class recipeServiceImplTest {
 
     RecipeServiceImpl recipeService;
     @Mock
     RecipeRepository recipeRepository;
+    Long id = 1L;
 
     @Before
     public void setUp() throws Exception {
@@ -27,7 +31,22 @@ public class recipeServiceImplTest extends TestCase {
         recipeService = new RecipeServiceImpl(recipeRepository);
 
     }
+    @Test
+    public void testGetRecipeById() {
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+        Optional<Recipe> recipeOptional = Optional.of(recipe);
 
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.getRecipeById(id);
+
+        assertNotNull("Null recipe returned", recipeReturned);
+        verify(recipeRepository, times(1)).findById(anyLong());
+        verify(recipeRepository,never()).findAll();
+    }
+
+    @Test
     public void testGetRecipe() {
 
         Recipe recipe1 = new Recipe();
@@ -38,14 +57,12 @@ public class recipeServiceImplTest extends TestCase {
         when(recipeRepository.findAll()).thenReturn(recipeData);
 
         Iterable<Recipe>  recipes = recipeService.getRecipe();
-       HashSet<Recipe> recipes2 = (HashSet<Recipe>)recipes;
+        HashSet<Recipe> recipes2 = (HashSet<Recipe>)recipes;
 
-        assertEquals(1, recipes2.size());
+        Assert.assertEquals(1, recipes2.size());
 
         // 想让findAll 执行几次， 如果次数不对，就显示出来！
         verify(recipeRepository,times(1)).findAll();
-
-
 
     }
 }

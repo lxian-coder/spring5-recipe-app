@@ -3,9 +3,10 @@ package Darcy.springframework.servicesImpl;
 import Darcy.springframework.domain.Recipe;
 import Darcy.springframework.repositories.RecipeRepository;
 import Darcy.springframework.services.RecipesService;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 
 @Slf4j
@@ -25,4 +26,16 @@ public class RecipeServiceImpl implements RecipesService {
        return recipeRepository.findAll();
 
     }
+
+    @Override
+    public Recipe getRecipeById(Long id) {
+
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+
+        if(!recipeOptional.isPresent()){
+            throw new RuntimeException("Recipe Not Found");
+        }
+        return recipeOptional.get();
+    }
+
 }
