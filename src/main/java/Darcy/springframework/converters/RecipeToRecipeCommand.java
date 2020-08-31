@@ -1,10 +1,13 @@
 package Darcy.springframework.converters;
 
+import Darcy.springframework.commands.NotesCommand;
 import Darcy.springframework.commands.RecipeCommand;
+import Darcy.springframework.domain.Notes;
 import Darcy.springframework.domain.Recipe;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Synchronized;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -17,9 +20,14 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component
 public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
-    private NotesToNotesCommand notesToNotesCommand;
+    @Autowired
+    private NotesToNotesCommand notesToNotesCommand ;
+    @Autowired
     private IngredientToIngredientCommand ingredientToIngredientCommand;
+    @Autowired
     private CategoryToCategoryCommand categoryToCategoryCommand;
+
+
     @Synchronized
     @Nullable
     @Override
@@ -36,9 +44,12 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
             recipeCommand.setUrl(source.getUrl());
             recipeCommand.setServings(source.getServings());
 
-            recipeCommand.setNotes(notesToNotesCommand.convert(source.getNotes()));
+            Notes notes = source.getNotes();
+            NotesCommand notesCommand = notesToNotesCommand.convert(notes);
+           recipeCommand.setNotes(notesToNotesCommand.convert(source.getNotes()));
 
             if(source.getCategories() != null && source.getCategories().size()>0){
+  //              categoryToCategoryCommand.convert(source.getCategories().iterator().next());
                 source.getCategories().forEach(
                         category -> recipeCommand.getCategories().add(categoryToCategoryCommand.convert(category)));
             }

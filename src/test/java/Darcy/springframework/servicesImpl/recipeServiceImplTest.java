@@ -1,5 +1,7 @@
 package Darcy.springframework.servicesImpl;
 
+import Darcy.springframework.converters.RecipeCommandToRecipe;
+import Darcy.springframework.converters.RecipeToRecipeCommand;
 import Darcy.springframework.domain.Recipe;
 import Darcy.springframework.repositories.RecipeRepository;
 import org.junit.Assert;
@@ -23,12 +25,18 @@ public class recipeServiceImplTest {
     RecipeServiceImpl recipeService;
     @Mock
     RecipeRepository recipeRepository;
+
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
     Long id = 1L;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository,recipeToRecipeCommand,recipeCommandToRecipe);
 
     }
     @Test

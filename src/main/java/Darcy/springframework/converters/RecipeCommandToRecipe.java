@@ -7,6 +7,7 @@ import Darcy.springframework.domain.Recipe;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Synchronized;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -18,9 +19,11 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component
 public class RecipeCommandToRecipe implements Converter<RecipeCommand,Recipe> {
-
+    @Autowired
     NotesCommandToNotes NOTES_converter;
+    @Autowired
     IngredientCommandToIngredient IG_converter;
+    @Autowired
     CategoryCommandToCategory CT_converter;
 
     @Synchronized
@@ -34,8 +37,6 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand,Recipe> {
            if (notes != null ) {
                recipe.setNotes(notes);
            }
-
-
 
             recipe.setDescription(source.getDescription());
            recipe.setDifficulty(source.getDifficulty());

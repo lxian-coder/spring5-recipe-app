@@ -1,6 +1,7 @@
 package Darcy.springframework.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -10,7 +11,8 @@ import java.util.Set;
  * spring5-recipe-app
  * Author: Darcy Xian  2020/8/512:56
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class Recipe {
     @Id
@@ -29,7 +31,7 @@ public class Recipe {
     @Lob
     private Byte[] image;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "recipe",orphanRemoval = true)
     private Notes notes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
@@ -46,7 +48,6 @@ public class Recipe {
 
     public Recipe() {
     }
-
 
     public void setNotes(Notes notes) {
         this.notes = notes;

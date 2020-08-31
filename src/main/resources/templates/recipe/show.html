@@ -94,7 +94,8 @@
                                 <ul>
                                     <li th:remove="all">1 Cup of milk</li>
                                     <li th:remove="all">1 Teaspoon of chocolate</li>
-                                    <li th:each="ingredient :${recipeId.getIngredients()}" th:text="${ingredient.getAmuont()+'  '
+                                    <li th:each="ingredient :${recipeId.getIngredients()}"
+                                        th:text="${ingredient.getAmuont()+'  '
                                       + ingredient.uom.getDescription() + '  -  ' + ingredient.getDescription()}">1 Teaspoon of Sugar</li>
                                 </ul>
                             </div>
@@ -124,6 +125,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <button ><a href="#" th:href="@{'/recipe'}">Confirm</a></button>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 package Darcy.springframework.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -8,8 +9,11 @@ import javax.persistence.*;
  * spring5-recipe-app
  * Author: Darcy Xian  2020/8/512:55
  */
-@Data
-@EqualsAndHashCode(exclude = "recipe")
+//@Data
+//@EqualsAndHashCode(exclude = "recipe")
+@Getter
+@Setter
+
 @Entity
 public class Notes {
 

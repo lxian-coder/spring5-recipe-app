@@ -5,6 +5,7 @@ import Darcy.springframework.domain.Ingredient;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Synchronized;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component
 public class IngredientCommandToIngredient implements Converter<IngredientCommand, Ingredient> {
-
+    @Autowired
     UnitOfMeasureCommandToUnitOfMeasure converter;
 
     @Synchronized

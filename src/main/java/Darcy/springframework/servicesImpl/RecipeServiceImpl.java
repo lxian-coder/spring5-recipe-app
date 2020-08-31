@@ -1,8 +1,12 @@
 package Darcy.springframework.servicesImpl;
 
+import Darcy.springframework.commands.RecipeCommand;
+import Darcy.springframework.converters.RecipeCommandToRecipe;
+import Darcy.springframework.converters.RecipeToRecipeCommand;
 import Darcy.springframework.domain.Recipe;
 import Darcy.springframework.repositories.RecipeRepository;
 import Darcy.springframework.services.RecipesService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -10,15 +14,15 @@ import java.util.Optional;
 
 
 @Slf4j
+@AllArgsConstructor
 @Service
 public class RecipeServiceImpl implements RecipesService {
 
-    private RecipeRepository  recipeRepository;
-   // private Set<Recipe> recipes = new HashSet<>();
+private final RecipeRepository recipeRepository;
+private final RecipeToRecipeCommand recipeToCommand;
+private final RecipeCommandToRecipe commandToRecipe;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
-    }
+
 
     @Override
     public Iterable<Recipe> getRecipe() {
@@ -38,4 +42,17 @@ public class RecipeServiceImpl implements RecipesService {
         return recipeOptional.get();
     }
 
+    @Override
+    public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand) {
+        Recipe detacheRecipe = commandToRecipe.convert(recipeCommand);
+        Recipe savedRecipe = recipeRepository.save(detacheRecipe);
+        log.debug("Saved RecipeId:" + savedRecipe.getId());
+
+        return recipeToCommand.convert(savedRecipe);
+    }
+
+    @Override
+    public RecipeCommand findCommandById(Long l) {
+        return recipeToCommand.convert(getRecipeById(l));
+    }
 }
