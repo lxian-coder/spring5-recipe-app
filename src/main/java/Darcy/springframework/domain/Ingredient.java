@@ -1,7 +1,8 @@
 package Darcy.springframework.domain;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,7 +12,8 @@ import java.math.BigDecimal;
  * Author: Darcy Xian  2020/8/515:15
  */
 
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(exclude = "recipe")
 @Entity
 //@Table(name = "Ingerdients")

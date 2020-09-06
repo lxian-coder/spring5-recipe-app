@@ -49,7 +49,6 @@ public class IndexControllerTest {
 
     }
 
-
     @Test
     public void getRecipeList() {
         // given
@@ -66,7 +65,6 @@ public class IndexControllerTest {
         // when
         String viewName = indexController.getRecipeList(model);
 
-
         // then
         assertEquals("index",viewName);
         verify(recipesService, times(1)).getRecipe(); // 这个 "recipesService" 一定是 标记 @Mock 的类
@@ -74,4 +72,6 @@ public class IndexControllerTest {
         Set<Recipe> setIncontroller = argumentCaptor.getValue();
        assertEquals(2,setIncontroller.size());  // assertEquals  值是不是相等； verify 运行了几次
     }
+
+
 }

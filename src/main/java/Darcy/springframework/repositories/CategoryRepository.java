@@ -10,7 +10,7 @@ import java.util.Optional;
  * spring5-recipe-app
  * Author: Darcy Xian  2020/8/711:38
  */
-
+@Repository
 public interface CategoryRepository extends CrudRepository<Category,Long> {
 
     Optional<Category> findByDescription (String description);

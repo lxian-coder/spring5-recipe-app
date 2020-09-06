@@ -55,4 +55,9 @@ private final RecipeCommandToRecipe commandToRecipe;
     public RecipeCommand findCommandById(Long l) {
         return recipeToCommand.convert(getRecipeById(l));
     }
+
+    @Override
+    public void deleteById(Long id) {
+        recipeRepository.deleteById(id);
+    }
 }
