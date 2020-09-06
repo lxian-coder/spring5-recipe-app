@@ -20,14 +20,10 @@ public class IndexController {
 
     @RequestMapping({"/recipe","/recipes","/recipes/","/recipe","","/"})
     public String getRecipeList(Model model){
-        log.debug("I am in controller");
+        log.debug("I am in index controller");
 
          model.addAttribute("recipes", recipesService.getRecipe());
          return "index";
     }
-
-
-
-
 
 }

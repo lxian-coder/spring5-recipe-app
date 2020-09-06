@@ -26,7 +26,7 @@ private final RecipeCommandToRecipe commandToRecipe;
 
     @Override
     public Iterable<Recipe> getRecipe() {
-        log.debug("I am in serviceImpl");
+        log.debug("I am in recipeserviceImpl");
        return recipeRepository.findAll();
 
     }
@@ -53,6 +53,7 @@ private final RecipeCommandToRecipe commandToRecipe;
 
     @Override
     public RecipeCommand findCommandById(Long l) {
+
         return recipeToCommand.convert(getRecipeById(l));
     }
 
