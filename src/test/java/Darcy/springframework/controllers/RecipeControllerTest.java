@@ -117,8 +117,19 @@ public class RecipeControllerTest {
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
 
     mockMvc.perform(get("/recipe/1/show"))
-            .andExpect(status().isNotFound());
+            .andExpect(status().isNotFound())
+            .andExpect(view().name("404error"));
 
+    }
+
+    @Test
+    public void testGetRecipeNumberFormatException() throws Exception{
+
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
+
+        mockMvc.perform(get("/recipe/aaa/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("400error"));
     }
 }
 
