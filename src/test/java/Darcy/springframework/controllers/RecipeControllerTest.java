@@ -2,6 +2,7 @@ package Darcy.springframework.controllers;
 
 import Darcy.springframework.commands.RecipeCommand;
 import Darcy.springframework.domain.Recipe;
+import Darcy.springframework.exceptions.NotFoundException;
 import Darcy.springframework.services.RecipesService;
 import org.junit.Before;
 import org.junit.Test;
@@ -96,16 +97,29 @@ public class RecipeControllerTest {
 }
 
 @Test
-    public void testDeleteAction() throws Exception{
+    public void testDeleteAction() throws Exception {
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
     mockMvc.perform(get("/recipe/1/delete"))
             .andExpect(status().is3xxRedirection())
             .andExpect(view().name("redirect:/"));
 
-    verify(recipesService,times(1))
+    verify(recipesService, times(1))
             .deleteById(anyLong());
+}
 
+    @Test
+    public void testGetRecipeNotFound() throws Exception{
+    Recipe recipe = new Recipe();
+    recipe.setId(1L);
 
+    when(recipesService.getRecipeById(anyLong())).thenThrow(NotFoundException.class);
+
+    MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
+
+    mockMvc.perform(get("/recipe/1/show"))
+            .andExpect(status().isNotFound());
+
+    }
 }
 
 
@@ -113,7 +127,7 @@ public class RecipeControllerTest {
 
 
 
-}
+
 
 
 

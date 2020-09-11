@@ -3,6 +3,7 @@ package Darcy.springframework.servicesImpl;
 import Darcy.springframework.converters.RecipeCommandToRecipe;
 import Darcy.springframework.converters.RecipeToRecipeCommand;
 import Darcy.springframework.domain.Recipe;
+import Darcy.springframework.exceptions.NotFoundException;
 import Darcy.springframework.repositories.RecipeRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -88,6 +89,16 @@ public class recipeServiceImplTest {
 
    }
 
+   @Test(expected = NotFoundException.class)
+    public void getRecipeByIdTestNotFound() throws Exception{
+        Optional<Recipe> recipeOptional = Optional.empty();
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.getRecipeById(1L);
+        // should go boom
+
+
+   }
 
 
 
@@ -95,6 +106,44 @@ public class recipeServiceImplTest {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

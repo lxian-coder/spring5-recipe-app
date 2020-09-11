@@ -4,6 +4,7 @@ import Darcy.springframework.commands.RecipeCommand;
 import Darcy.springframework.converters.RecipeCommandToRecipe;
 import Darcy.springframework.converters.RecipeToRecipeCommand;
 import Darcy.springframework.domain.Recipe;
+import Darcy.springframework.exceptions.NotFoundException;
 import Darcy.springframework.repositories.RecipeRepository;
 import Darcy.springframework.services.RecipesService;
 import lombok.AllArgsConstructor;
@@ -37,7 +38,7 @@ private final RecipeCommandToRecipe commandToRecipe;
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if(!recipeOptional.isPresent()){
-            throw new RuntimeException("Recipe Not Found");
+            throw new NotFoundException("Recipe Not Found");
         }
         return recipeOptional.get();
     }
