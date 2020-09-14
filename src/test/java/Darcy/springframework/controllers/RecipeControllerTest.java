@@ -65,6 +65,7 @@ public class RecipeControllerTest {
                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                .param("id","")
                .param("description","some string")
+               .param("directions","some directions")
        )
                 .andExpect(status().is3xxRedirection())
                .andExpect(view().name("redirect:/recipe/2/show/"));
@@ -81,7 +82,7 @@ public class RecipeControllerTest {
                .andExpect(model().attributeExists("recipe"));
    }
 
-@Test
+   @Test
     public void testGetupdateView() throws Exception{
         RecipeCommand recipeCommand = new RecipeCommand();
         recipeCommand.setId(2L);
@@ -96,7 +97,7 @@ public class RecipeControllerTest {
                         .andExpect(model().attributeExists("recipe"));
 }
 
-@Test
+    @Test
     public void testDeleteAction() throws Exception {
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
     mockMvc.perform(get("/recipe/1/delete"))
@@ -105,7 +106,7 @@ public class RecipeControllerTest {
 
     verify(recipesService, times(1))
             .deleteById(anyLong());
-}
+    }
 
     @Test
     public void testGetRecipeNotFound() throws Exception{
@@ -125,7 +126,10 @@ public class RecipeControllerTest {
     @Test
     public void testGetRecipeNumberFormatException() throws Exception{
 
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
+        MockMvc mockMvc = MockMvcBuilders
+                .standaloneSetup(recipeController)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
 
         mockMvc.perform(get("/recipe/aaa/show"))
                 .andExpect(status().isBadRequest())
