@@ -57,7 +57,7 @@ public class IngredientCommandToIngredientTest {
         //then
         assertNotNull(ingredient);
         assertEquals(DESCRIPTION,ingredient.getDescription());
-        assertEquals(AMOUNT,ingredient.getAmuont());
+        assertEquals(AMOUNT,ingredient.getAmount());
         assertEquals(ID,ingredient.getId());
         assertEquals(UOMC_ID,ingredient.getUom().getId());
         assertEquals(RECIPE_ID,ingredient.getRecipe().getId());

@@ -32,7 +32,7 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
 
             ingredient.setUom(converter.convert(source.getUomC()));
             ingredient.setDescription(source.getDescription());
-            ingredient.setAmuont(source.getAmount());
+            ingredient.setAmount(source.getAmount());
             ingredient.setId(source.getId());
             // 如果ingredient 有 recipe, 那么就建立以个新的recipe，赋予ID 和 ingredient.
             // 这个地方有点疑惑？  如果recipeID 是数据库已经存在的ID，那么这是个什么逻辑？

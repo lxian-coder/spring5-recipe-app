@@ -39,7 +39,7 @@ public class IngredientToIngredientCommandTest {
         // given
         Ingredient ing =new Ingredient();
         ing.setId(ID);
-        ing.setAmuont(AMOUNT);
+        ing.setAmount(AMOUNT);
         ing.setDescription(DESCRIPTION);
         ing.setUom(null);
         //when
@@ -57,7 +57,7 @@ public class IngredientToIngredientCommandTest {
         // given
         Ingredient ing =new Ingredient();
      ing.setId(ID);
-     ing.setAmuont(AMOUNT);
+     ing.setAmount(AMOUNT);
      ing.setDescription(DESCRIPTION);
 
      UnitOfMeasure UOM = new UnitOfMeasure();

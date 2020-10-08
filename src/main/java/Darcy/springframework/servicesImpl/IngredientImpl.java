@@ -71,7 +71,7 @@ public class IngredientImpl implements IngredientService {
             if(ingredientOptional.isPresent()){
                 Ingredient ingredientFound = ingredientOptional.get();
                 ingredientFound.setDescription(command.getDescription());
-                ingredientFound.setAmuont(command.getAmount());
+                ingredientFound.setAmount(command.getAmount());
                 // uomC 从form传过来只有ID， description是null； 所以查找这uom的id 给它赋值；
                 if(command.getUomC()!=null) {
                     ingredientFound.setUom(unitOfMeasureRepository.findById(command.getUomC().getId())
@@ -98,7 +98,7 @@ public class IngredientImpl implements IngredientService {
                 // not totally safe.. But best guess
                 savedIngredientOptional = savedRecipe.getIngredients().stream()
                         .filter(reipeIngredients -> reipeIngredients.getDescription().equals(command.getDescription()))
-                        .filter(ingredient -> ingredient.getAmuont().equals(command.getAmount()))
+                        .filter(ingredient -> ingredient.getAmount().equals(command.getAmount()))
                         .filter(ingredient -> ingredient.getUom().getId().equals(command.getUomC().getId()))
                         .findFirst();
             }

@@ -1,18 +1,15 @@
 package Darcy.springframework.bootstrap;
 
 
-
 import Darcy.springframework.domain.*;
 import Darcy.springframework.repositories.CategoryRepository;
 import Darcy.springframework.repositories.RecipeRepository;
 import Darcy.springframework.repositories.UnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
-
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-
-
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,6 +22,8 @@ import java.util.Optional;
  */
 @Slf4j
 @Component
+@Profile("default")
+// this is going to be going with the H2 database
 public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEvent>{
     private final CategoryRepository categoryRepository;
     private final RecipeRepository recipeRepository;
@@ -174,15 +173,15 @@ public class RecipeBootstrap  implements ApplicationListener<ContextRefreshedEve
         tacosRecipe.setDescription("Spicy Grilled Chicken Tacos Recipe");
 
         // ingredent
-        tacosRecipe.addIngredient(new Ingredient("ancho chili", new BigDecimal(2),savedTable));
-        tacosRecipe.addIngredient(new Ingredient("dried oregano", new BigDecimal(1), savedTeaspoon));
-        tacosRecipe.addIngredient(new Ingredient("dried cumin", new BigDecimal(1),savedTeaspoon));
-        tacosRecipe.addIngredient(new Ingredient("suger",new BigDecimal(1),savedTeaspoon));
-        tacosRecipe.addIngredient(new Ingredient("salt", new BigDecimal(".5"),savedTable));
-        tacosRecipe.addIngredient(new Ingredient("clove garlic,finely chopped", new BigDecimal(1), savedEach));
-        tacosRecipe.addIngredient(new Ingredient("finely grated orange zest", new BigDecimal(1),savedTable));
-        tacosRecipe.addIngredient(new Ingredient("fresh-squeezed orange juice",new BigDecimal(3),savedTable));
-        tacosRecipe.addIngredient(new Ingredient("olive oil",new BigDecimal(2),savedTable));
+        tacosRecipe.addIngredient(new Ingredient("ancho chili", new BigDecimal("2"),savedTable));
+        tacosRecipe.addIngredient(new Ingredient("dried oregano", new BigDecimal("1"), savedTeaspoon));
+        tacosRecipe.addIngredient(new Ingredient("dried cumin", new BigDecimal("1"),savedTeaspoon));
+        tacosRecipe.addIngredient(new Ingredient("suger",new BigDecimal("1"),savedTeaspoon));
+        tacosRecipe.addIngredient(new Ingredient("salt", new BigDecimal("0.5"),savedTable));
+        tacosRecipe.addIngredient(new Ingredient("clove garlic,finely chopped", new BigDecimal("1"), savedEach));
+        tacosRecipe.addIngredient(new Ingredient("finely grated orange zest", new BigDecimal("1"),savedTable));
+        tacosRecipe.addIngredient(new Ingredient("fresh-squeezed orange juice",new BigDecimal("3"),savedTable));
+        tacosRecipe.addIngredient(new Ingredient("olive oil",new BigDecimal("2"),savedTable));
 
 
 

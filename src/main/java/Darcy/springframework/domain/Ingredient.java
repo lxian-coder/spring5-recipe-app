@@ -24,7 +24,7 @@ public class Ingredient {
     private Long id;
     //@Column(name = "descriptionsss")
     private String description;
-    private BigDecimal amuont;
+    private BigDecimal amount;
 
 
     @ManyToOne
@@ -36,9 +36,9 @@ public class Ingredient {
     public Ingredient() {
     }
 
-    public Ingredient(String description, BigDecimal amuont, UnitOfMeasure uom) {
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom) {
         this.description = description;
-        this.amuont = amuont;
+        this.amount = amount;
         this.uom = uom;
     }
 }
