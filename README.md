@@ -14,4 +14,4 @@
 * Using MVC architecture to present data to web users.
 * Using Lombok to make code simple and clean. 
                   
-Technique used: Java, SpringBoot, Maven, MVC framework, Lombok, JPA, MySQL , JUnit, ThymeLeaf, CI/CD
+*Technique used:* Java, SpringBoot, Maven, MVC framework, Lombok, JPA, MySQL , JUnit, ThymeLeaf, CI/CD
